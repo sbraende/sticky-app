@@ -50,6 +50,7 @@ const renderNotes = () => {
       deleteButton.addEventListener("click", () => {
         displayDeleteModal(note.subject, note.id);
       });
+
       editButton.addEventListener("click", () => {
         enterEditMode(note.id);
         document.querySelectorAll(".note-card").forEach((card) => {
@@ -59,6 +60,13 @@ const renderNotes = () => {
         noteCard.classList.add("note-card--edited");
         submitButton.textContent = "Confirm edit";
         submitButton.classList.add("note-card--edited");
+      });
+
+      noteCard.addEventListener("click", () => {
+        document.querySelectorAll(".note-card").forEach((card) => {
+          card.style.zIndex = "0";
+        });
+        noteCard.style.zIndex = "1";
       });
     });
   }
