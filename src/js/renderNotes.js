@@ -1,8 +1,10 @@
 import { displayDeleteModal } from "./deleteNotes.js";
+import { enterEditMode } from "./editNotes.js";
 
 const renderNotes = () => {
   const notesList = JSON.parse(localStorage.getItem("notes"));
   const notesContainer = document.querySelector(".notes__container");
+  const submitButton = document.querySelector(".form__submit-button");
   if (notesList) {
     notesContainer.innerHTML = "";
     const reversedNotesArray = notesList.slice().reverse(); // Slice is used to clone original array so we dont change the original source
@@ -47,6 +49,16 @@ const renderNotes = () => {
       // Adding event listeners
       deleteButton.addEventListener("click", () => {
         displayDeleteModal(note.subject, note.id);
+      });
+      editButton.addEventListener("click", () => {
+        enterEditMode(note.id);
+        document.querySelectorAll(".note-card").forEach((card) => {
+          card.classList.remove("note-card--edited");
+        });
+
+        noteCard.classList.add("note-card--edited");
+        submitButton.textContent = "Confirm edit";
+        submitButton.classList.add("note-card--edited");
       });
     });
   }

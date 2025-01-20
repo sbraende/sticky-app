@@ -201,3 +201,8 @@ main {
   background-color: var(--color-submit-buttons);
   border: 1px solid black;
 }
+
+/* Edit mode */
+.note-card--edited {
+  background-color: yellow;
+}
