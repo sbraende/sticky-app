@@ -1,3 +1,5 @@
+import { displayDeleteModal } from "./deleteNotes.js";
+
 const renderNotes = () => {
   const notesList = JSON.parse(localStorage.getItem("notes"));
   const notesContainer = document.querySelector(".notes__container");
@@ -41,6 +43,11 @@ const renderNotes = () => {
       noteText.classList.add("note-card__text");
 
       noteCard.style.transform = `rotate(${note.rotation}deg)`;
+
+      // Adding event listeners
+      deleteButton.addEventListener("click", () => {
+        displayDeleteModal(note.subject, note.id);
+      });
     });
   }
 };
